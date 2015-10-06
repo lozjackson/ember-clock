@@ -59,7 +59,8 @@ export default Ember.Service.extend({
   */
   stopClock() {
     var nextTick = this.get('nextTick');
-	   Ember.run.cancel(nextTick);
+    Ember.run.cancel(nextTick);
+    this.set('nextTick', null);
   },
 
   /**
