@@ -1,6 +1,27 @@
-# Ember-clock
+# ember-clock
 
-This README outlines the details of collaborating on this Ember addon.
+## ClockService
+
+The clock service is injected into all controllers and components.
+
+To use the clock in a template or in computed properties, bind to the clock's
+`hour`, `minute`, or `second` properties.
+
+In templates:
+
+  ```
+  {{clock.hour}}
+  {{clock.minute}}
+  {{clock.second}}
+  ```
+
+You can observe the clock in computed properties..
+
+  ```
+  property: Ember.computed( 'clock.minute', ... function () {
+    // this will update every minute
+  })
+  ```
 
 ## Installation
 
