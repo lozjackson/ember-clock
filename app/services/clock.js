@@ -1,0 +1,1 @@
+export { default } from 'ember-clock/services/clock';
