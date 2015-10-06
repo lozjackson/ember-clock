@@ -6,7 +6,7 @@ import Ember from 'ember';
 /**
   ## ClockService
 
-  The clock is injected into all controllers and components.
+  The clock service is injected into all controllers and components.
 
   To use the clock in a template or in computed properties, bind to the clock's
   `hour`, `minute`, or `second` properties.
