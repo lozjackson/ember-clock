@@ -1,0 +1,12 @@
+{
+  "name": "ember-clock",
+  "description": "Clock service for ember",
+  "url": "https://github.com/lozjackson/ember-clock",
+  "options": {
+    "paths": [
+      "addon"
+    ],
+    "exclude": "vendor",
+    "outdir":   "docs"
+  }
+}
