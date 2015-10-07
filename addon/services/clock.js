@@ -27,13 +27,14 @@ import Ember from 'ember';
     })
     ```
 
-  For example you might have an event scheduling system where the events need to update their status as the time changes.
+  For example you might have an event scheduling system where the events need to 
+  update their status as the time changes.
 
     ```
     // this property will update every minute
-    eventStatus: Ember.computed( 'clock.minute', 'event.start', function () {
+    eventStatus: Ember.computed( 'clock.minute', 'event.status', function () {
       this.get('clock.minute');
-      return this.get('event.start');
+      return this.get('event.status');
     })
     ```
 
