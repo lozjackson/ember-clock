@@ -1,6 +1,6 @@
 # ember-clock
 
-This is an Ember addon that provides a clock service.  The clock synchronises to the local host system clock every second.  The clock can be used to display the time or can be used to update time sensitive properties.
+This is an Ember addon that provides a clock service.  The clock synchronises to the local host system clock and can be used to display the time or can be used to update time sensitive properties.
 
 ## ClockService
 
@@ -29,14 +29,9 @@ For example you might have an event scheduling system where the events need to u
 
   ```
   // this property will update every minute
-  eventStatus: Ember.computed( 'clock.minute', 'event.status', function () {
-    this.get('clock.minute');
-    return this.get('event.status');
+  status: Ember.computed( 'clock.minute', 'model.status', function () {
+    return this.get('model.status');
   })
-  ```
-
-  ```
-  {{event-viewer status=eventStatus model=event}}
   ```
 
 ## Installation

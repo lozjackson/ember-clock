@@ -1,6 +1,6 @@
 {
   "name": "ember-clock",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Clock service for Ember",
   "directories": {
     "doc": "doc",
