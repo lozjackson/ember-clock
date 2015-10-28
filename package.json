@@ -38,7 +38,16 @@
     "ember-try": "0.0.6"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-cli",
+    "ember",
+    "time",
+    "timer",
+    "clock",
+    "clock-service",
+    "hour",
+    "minute",
+    "second"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.3"
