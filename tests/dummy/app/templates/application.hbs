@@ -1,5 +1,50 @@
-<h2 id="title">ember-clock</h2>
+<h1 id="title">ember-clock</h1>
+
+<div>
+  {{clock.hour}} : {{clock.minute}} : {{clock.second}}
+</div>
+
+<h2>ClockService</h2>
+
+<p>
+  The clock service is injected into all controllers and components.
+</p>
+
+<p>
+  To use the clock in a template or in computed properties, bind to the clock's
+  <code>hour</code>, <code>minute</code>, or <code>second</code> properties.
+</p>
+
+<p>
+  In templates:
+</p>
+
+<div>
+  <pre></code>&#123;&#123;clock.hour&#125;&#125;
+&#123;&#123;clock.minute&#125;&#125;
+&#123;&#123;clock.second&#125;&#125;</code></pre>
+</div>
+
+<p>
+  You can observe the clock in computed properties..
+</p>
+
+<div>
+  <pre></code>property: Ember.computed('clock.second', function () &#123;
+  // this will update every second
+&#125;)</code></pre>
+</div>
+
+<p>
+  For example you might have an event scheduling system where the events need to
+  update their status as the time changes.
+</p>
+
+<div>
+  <pre></code>// this property will update every minute
+status: Ember.computed('clock.minute', 'model.status', function () &#123;
+  return this.get('model.status');
+&#125;)</code></pre>
+</div>
 
 {{outlet}}
-
-{{clock.hour}} : {{clock.minute}} : {{clock.second}}
