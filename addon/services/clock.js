@@ -138,6 +138,7 @@ export default Ember.Service.extend({
     calls `stopClock()`
 
     @event willDestroy
+    @private
   */
   willDestroy() {
     this.stopClock();
