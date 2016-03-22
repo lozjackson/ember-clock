@@ -45,17 +45,24 @@ import Ember from 'ember';
 export default Ember.Service.extend({
 
   /**
+    @property interval
+    @type {Object}
+    @private
+  */
+  interval: 1000,
+
+  /**
     @property hour
     @type {Integer}
   */
   hour: null,
-  
+
   /**
     @property minute
     @type {Integer}
   */
   minute: null,
-  
+
    /**
     @property second
     @type {Integer}
@@ -120,10 +127,9 @@ export default Ember.Service.extend({
   */
   tick() {
 		this.setTime();
-      var nextTick = Ember.run.later(this, function() {
-        this.tick();
-		  }, 1000);
-		this.set('nextTick', nextTick);
+  	this.set('nextTick', Ember.run.later(this, () => {
+      this.tick ();
+    }, this.get('interval')));
 	},
 
   /**
