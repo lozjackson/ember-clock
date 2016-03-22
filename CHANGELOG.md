@@ -1,7 +1,5 @@
 ### v1.0.0 2016-03-22
 
-* Stable release
-
 * Update to Ember 2.4.3
 
 
