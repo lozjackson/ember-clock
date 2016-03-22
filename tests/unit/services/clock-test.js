@@ -36,22 +36,23 @@ test('stop', function(assert) {
 */
 test('clock ticks', function(assert) {
 
-  assert.expect(6);
+  assert.expect(7);
   let clock = this.subject();
-  let date = new Date();
+  let date1 = new Date();
 
   window.QUnit.stop();
-  assert.equal(clock.get('second'), date.getSeconds());
-  assert.equal(clock.get('minute'), date.getMinutes());
-  assert.equal(clock.get('hour'), date.getHours());
+  assert.equal(clock.get('second'), date1.getSeconds());
+  assert.equal(clock.get('minute'), date1.getMinutes());
+  assert.equal(clock.get('hour'), date1.getHours());
 
   Ember.run.later(function() {
-    let date = new Date();
-    assert.equal(clock.get('second'), date.getSeconds());
-    assert.equal(clock.get('minute'), date.getMinutes());
-    assert.equal(clock.get('hour'), date.getHours());
+    assert.equal(clock.get('second'), date1.getSeconds() + 2);
+    let date2 = new Date();
+    assert.equal(clock.get('second'), date2.getSeconds());
+    assert.equal(clock.get('minute'), date2.getMinutes());
+    assert.equal(clock.get('hour'), date2.getHours());
     window.QUnit.start();
-  }, 2010);
+  }, 2020);
 });
 
 test('willDestroy', function(assert) {
