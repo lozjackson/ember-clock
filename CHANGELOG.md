@@ -1,3 +1,10 @@
+### v1.0.0 2016-03-22
+
+* Stable release
+
+
+
+
 ### v0.0.2 2015-10-23
 
 * [BUGFIX] Make the `clock-initializer` work with Ember 2.0 and Ember 2.1.
