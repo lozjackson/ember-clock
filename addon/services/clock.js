@@ -15,34 +15,29 @@ import Ember from 'ember';
 
   In templates:
 
-    ```
-    {{clock.hour}}
-    {{clock.minute}}
-    {{clock.second}}
-    ```
+  ```
+  {{clock.hour}}
+  {{clock.minute}}
+  {{clock.second}}
+  ```
 
   You can observe the clock in computed properties..
 
-    ```
-    property: Ember.computed( 'clock.minute', ... function () {
-      // this will update every minute
-    })
-    ```
+  ```
+  property: Ember.computed('clock.second', function () {
+    // this will update every second
+  })
+  ```
 
   For example you might have an event scheduling system where the events need to
   update their status as the time changes.
 
-    ```
-    // this property will update every minute
-    eventStatus: Ember.computed( 'clock.minute', 'event.status', function () {
-      this.get('clock.minute');
-      return this.get('event.status');
-    })
-    ```
-
-    ```
-    {{event-viewer status=eventStatus model=event}}
-    ```
+  ```
+  // this property will update every minute
+  status: Ember.computed('clock.minute', 'event.status', function () {
+    return this.get('event.status');
+  })
+  ```
 
   @class ClockService
   @namespace EmberClock
@@ -50,26 +45,25 @@ import Ember from 'ember';
 export default Ember.Service.extend({
 
   /**
+    @property hour
+    @type {Integer}
+  */
+  hour: null,
+  
+  /**
+    @property minute
+    @type {Integer}
+  */
+  minute: null,
+  
+   /**
     @property second
     @type {Integer}
   */
   second: null,
 
   /**
-    @property minute
-    @type {Integer}
-  */
-  minute: null,
-
-  /**
-    @property hour
-    @type {Integer}
-  */
-  hour: null,
-
-  /**
     Stores the next tick, so that it can be cancelled and the clock stopped.
-
     @property nextTick
     @type {Object}
     @private
@@ -77,8 +71,7 @@ export default Ember.Service.extend({
   nextTick: null,
 
   /**
-    Calls `startClock()`
-
+    Call `startClock()`
     @method init
     @private
   */
@@ -87,17 +80,18 @@ export default Ember.Service.extend({
   },
 
   /**
-    Starts the clock
-
+    Start the clock
     @method startClock
+    @private
   */
   startClock() {
     this.tick();
   },
 
   /**
-    Stops the clock
+    Stop the clock
     @method stopClock
+    @private
   */
   stopClock() {
     var nextTick = this.get('nextTick');
@@ -106,8 +100,7 @@ export default Ember.Service.extend({
   },
 
   /**
-    Sets the time to the current time.
-
+    Set the time to the current time.
     @method setTime
     @private
   */
@@ -122,7 +115,6 @@ export default Ember.Service.extend({
 
   /**
     Ticks the clock
-
     @method tick
     @private
   */
@@ -135,8 +127,7 @@ export default Ember.Service.extend({
 	},
 
   /**
-    calls `stopClock()`
-
+    call `stopClock()`
     @event willDestroy
     @private
   */
