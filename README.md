@@ -23,19 +23,10 @@ In templates:
 {{clock.second}}
 ```
 
-You can observe the clock in computed properties..
+In computed properties:
 
 ```
 property: Ember.computed('clock.second', function () {
   // this will update every second
-})
-```
-
-For example you might have an event scheduling system where the events need to update their status as the time changes.
-
-```
-// this property will update every minute
-status: Ember.computed('clock.minute', 'model.status', function () {
-  return this.get('model.status');
 })
 ```

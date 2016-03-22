@@ -36,32 +36,16 @@
   In templates:
 </p>
 
-<div>
-  <pre><code>&#123;&#123;clock.hour&#125;&#125;
+<pre><code>&#123;&#123;clock.hour&#125;&#125;
 &#123;&#123;clock.minute&#125;&#125;
 &#123;&#123;clock.second&#125;&#125;</code></pre>
-</div>
 
 <p>
-  You can observe the clock in computed properties..
+  In computed properties:
 </p>
 
-<div>
-  <pre><code>property: Ember.computed('clock.second', function () &#123;
+<pre><code>property: Ember.computed('clock.second', function () &#123;
   // this will update every second
 &#125;)</code></pre>
-</div>
-
-<p>
-  For example you might have an event scheduling system where the events need to
-  update their status as the time changes.
-</p>
-
-<div>
-  <pre><code>// this property will update every minute
-status: Ember.computed('clock.minute', 'model.status', function () &#123;
-  return this.get('model.status');
-&#125;)</code></pre>
-</div>
 
 {{outlet}}

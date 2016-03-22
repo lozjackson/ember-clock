@@ -9,8 +9,8 @@ const { computed, run } = Ember;
   ## ClockService
 
   The clock service is injected into all controllers and components.  The clock
-  synchronises to the local host's system clock and can be used to
-  display the time or can be used to update time sensitive properties.
+  synchronizes to the local host's system clock and can be used to display the
+  time or to update time sensitive properties.
 
   To use the clock in a template or in computed properties, bind to the clock's
   `hour`, `minute`, or `second` properties.
@@ -23,21 +23,11 @@ const { computed, run } = Ember;
   {{clock.second}}
   ```
 
-  You can observe the clock in computed properties..
+  In computed properties:
 
   ```
   property: Ember.computed('clock.second', function () {
     // this will update every second
-  })
-  ```
-
-  For example you might have an event scheduling system where the events need to
-  update their status as the time changes.
-
-  ```
-  // this property will update every minute
-  status: Ember.computed('clock.minute', 'event.status', function () {
-    return this.get('event.status');
   })
   ```
 
