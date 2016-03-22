@@ -2,6 +2,8 @@
 
 * Stable release
 
+* Update to Ember 2.4.3
+
 
 
 
