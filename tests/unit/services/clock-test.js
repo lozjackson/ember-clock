@@ -2,48 +2,62 @@ import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
 
 moduleFor('service:clock', 'Unit | Service | clock', {
-  // Specify the other units that are required for this test.
-  // needs: ['service:foo']
 });
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  var service = this.subject();
-  assert.ok(service);
+test('isTicking', function(assert) {
+
+  assert.expect(3);
+  let clock = this.subject();
+
+  assert.equal(clock.get('isTicking'), true);
+  clock.stop();
+  assert.equal(clock.get('isTicking'), false);
+
+  clock.start();
+  assert.equal(clock.get('isTicking'), true);
+});
+
+test('start', function(assert) {
+  assert.expect(1);
+  let clock = this.subject();
+  clock.set('tick', () => assert.ok(true));
+  clock.start();
+});
+
+test('stop', function(assert) {
+  assert.expect(1);
+  let clock = this.subject();
+  clock.stop();
+  assert.equal(clock.get('nextTick', null));
 });
 
 /*
-  check that the clock starts and keeps time after 10 seconds
+  check that the clock starts and ticks 2 seconds
 */
-test('clock ticks 10 seconds', function(assert) {
+test('clock ticks', function(assert) {
 
-  assert.expect(6);
-  var clock = this.subject();
-  var date = new Date();
+  assert.expect(7);
+  let clock = this.subject();
+  let date1 = new Date();
+
   window.QUnit.stop();
-  assert.equal(clock.get('second'), date.getSeconds());
-  assert.equal(clock.get('minute'), date.getMinutes());
-  assert.equal(clock.get('hour'), date.getHours());
+  assert.equal(clock.get('second'), date1.getSeconds());
+  assert.equal(clock.get('minute'), date1.getMinutes());
+  assert.equal(clock.get('hour'), date1.getHours());
 
   Ember.run.later(function() {
-    var date = new Date();
-    assert.equal(clock.get('second'), date.getSeconds());
-    assert.equal(clock.get('minute'), date.getMinutes());
-    assert.equal(clock.get('hour'), date.getHours());
+    assert.equal(clock.get('second'), date1.getSeconds() + 2);
+    let date2 = new Date();
+    assert.equal(clock.get('second'), date2.getSeconds());
+    assert.equal(clock.get('minute'), date2.getMinutes());
+    assert.equal(clock.get('hour'), date2.getHours());
     window.QUnit.start();
-  }, 10050);
+  }, 2020);
 });
 
-/*
-  check that the clock stops
-*/
-test('clock stops', function(assert) {
-
-  assert.expect(2);
-  var clock = this.subject();
-  var date = new Date();
-  assert.equal(clock.get('second'), date.getSeconds());
-
-  clock.stopClock();
+test('willDestroy', function(assert) {
+  assert.expect(1);
+  let clock = this.subject();
+  clock.willDestroy();
   assert.equal(clock.get('nextTick', null));
 });

@@ -3,63 +3,38 @@
 */
 import Ember from 'ember';
 
+const { computed, run } = Ember;
+
 /**
   ## ClockService
 
   The clock service is injected into all controllers and components.  The clock
-  synchronises to the local host's system clock and can be used to
-  display the time or can be used to update time sensitive properties.
+  synchronizes to the local host's system clock and can be used to display the
+  time or to update time sensitive properties.
 
   To use the clock in a template or in computed properties, bind to the clock's
   `hour`, `minute`, or `second` properties.
 
   In templates:
 
-    ```
-    {{clock.hour}}
-    {{clock.minute}}
-    {{clock.second}}
-    ```
+  ```
+  {{clock.hour}}
+  {{clock.minute}}
+  {{clock.second}}
+  ```
 
-  You can observe the clock in computed properties..
+  In computed properties:
 
-    ```
-    property: Ember.computed( 'clock.minute', ... function () {
-      // this will update every minute
-    })
-    ```
-
-  For example you might have an event scheduling system where the events need to
-  update their status as the time changes.
-
-    ```
-    // this property will update every minute
-    eventStatus: Ember.computed( 'clock.minute', 'event.status', function () {
-      this.get('clock.minute');
-      return this.get('event.status');
-    })
-    ```
-
-    ```
-    {{event-viewer status=eventStatus model=event}}
-    ```
+  ```
+  property: Ember.computed('clock.second', function () {
+    // this will update every second
+  })
+  ```
 
   @class ClockService
   @namespace EmberClock
 */
 export default Ember.Service.extend({
-
-  /**
-    @property second
-    @type {Integer}
-  */
-  second: null,
-
-  /**
-    @property minute
-    @type {Integer}
-  */
-  minute: null,
 
   /**
     @property hour
@@ -68,8 +43,19 @@ export default Ember.Service.extend({
   hour: null,
 
   /**
-    Stores the next tick, so that it can be cancelled and the clock stopped.
+    @property minute
+    @type {Integer}
+  */
+  minute: null,
 
+   /**
+    @property second
+    @type {Integer}
+  */
+  second: null,
+
+  /**
+    Stores the next tick, so that it can be cancelled and the clock stopped.
     @property nextTick
     @type {Object}
     @private
@@ -77,42 +63,49 @@ export default Ember.Service.extend({
   nextTick: null,
 
   /**
-    Calls `startClock()`
+    @property isTicking
+    @type {Boolean}
+    @readonly
+    @private
+  */
+  isTicking: computed.bool('nextTick'),
 
+  /**
+    Call `startClock()`
     @method init
     @private
   */
   init() {
-    this.startClock();
+    this._super();
+    this.start();
   },
 
   /**
-    Starts the clock
-
-    @method startClock
+    Start the clock
+    @method start
+    @private
   */
-  startClock() {
+  start() {
     this.tick();
   },
 
   /**
-    Stops the clock
-    @method stopClock
+    Stop the clock
+    @method stop
+    @private
   */
-  stopClock() {
-    var nextTick = this.get('nextTick');
-    Ember.run.cancel(nextTick);
+  stop() {
+    run.cancel(this.get('nextTick'));
     this.set('nextTick', null);
   },
 
   /**
-    Sets the time to the current time.
-
+    Set the time to the current time.
     @method setTime
     @private
   */
   setTime() {
-    var now = new Date();
+    let now = new Date();
     this.setProperties({
       second: now.getSeconds(),
       minute: now.getMinutes(),
@@ -122,24 +115,22 @@ export default Ember.Service.extend({
 
   /**
     Ticks the clock
-
     @method tick
     @private
   */
   tick() {
 		this.setTime();
-      var nextTick = Ember.run.later(this, function() {
-        this.tick();
-		  }, 1000);
-		this.set('nextTick', nextTick);
+  	this.set('nextTick', run.later(this, () => {
+      this.tick ();
+    }, 1000));
 	},
 
   /**
-    calls `stopClock()`
-
+    call `stop()`
     @event willDestroy
+    @private
   */
   willDestroy() {
-    this.stopClock();
+    this.stop();
   }
 });

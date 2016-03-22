@@ -1,0 +1,27 @@
+body {
+  font-family: sans-serif;
+}
+pre {
+  white-space: pre-wrap;
+}
+ul.clock {
+  list-style: none;
+  padding: 0px;
+}
+ul.clock li div {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+}
+pre {
+  padding: 10px;
+  border-radius: 2px;
+  background: #eaeaea;
+  box-shadow: inset 0px 1px 1px #888;
+  max-width: 800px;
+}
+p code {
+  background: #eaeaea;
+  border-radius: 2px;
+  padding: 2px 5px;
+}
