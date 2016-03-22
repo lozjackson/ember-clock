@@ -3,6 +3,8 @@
 */
 import Ember from 'ember';
 
+const { computed, run } = Ember;
+
 /**
   ## ClockService
 
@@ -45,13 +47,6 @@ import Ember from 'ember';
 export default Ember.Service.extend({
 
   /**
-    @property interval
-    @type {Object}
-    @private
-  */
-  interval: 1000,
-
-  /**
     @property hour
     @type {Integer}
   */
@@ -78,31 +73,39 @@ export default Ember.Service.extend({
   nextTick: null,
 
   /**
+    @property isTicking
+    @type {Boolean}
+    @readonly
+    @private
+  */
+  isTicking: computed.bool('nextTick'),
+
+  /**
     Call `startClock()`
     @method init
     @private
   */
   init() {
-    this.startClock();
+    this._super();
+    this.start();
   },
 
   /**
     Start the clock
-    @method startClock
+    @method start
     @private
   */
-  startClock() {
+  start() {
     this.tick();
   },
 
   /**
     Stop the clock
-    @method stopClock
+    @method stop
     @private
   */
-  stopClock() {
-    var nextTick = this.get('nextTick');
-    Ember.run.cancel(nextTick);
+  stop() {
+    run.cancel(this.get('nextTick'));
     this.set('nextTick', null);
   },
 
@@ -112,7 +115,7 @@ export default Ember.Service.extend({
     @private
   */
   setTime() {
-    var now = new Date();
+    let now = new Date();
     this.setProperties({
       second: now.getSeconds(),
       minute: now.getMinutes(),
@@ -127,17 +130,17 @@ export default Ember.Service.extend({
   */
   tick() {
 		this.setTime();
-  	this.set('nextTick', Ember.run.later(this, () => {
+  	this.set('nextTick', run.later(this, () => {
       this.tick ();
-    }, this.get('interval')));
+    }, 1000));
 	},
 
   /**
-    call `stopClock()`
+    call `stop()`
     @event willDestroy
     @private
   */
   willDestroy() {
-    this.stopClock();
+    this.stop();
   }
 });
