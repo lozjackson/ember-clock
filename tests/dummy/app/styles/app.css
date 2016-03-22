@@ -4,3 +4,12 @@ body {
 pre {
   white-space: pre-wrap;
 }
+ul.clock {
+  list-style: none;
+  padding: 0px;
+}
+ul.clock li div {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+}
