@@ -1,8 +1,8 @@
 # ember-clock
 
 This is an Ember addon that provides a clock service.  The clock synchronizes to
-the local host system clock and can be used to display the time or can be used to
-update time sensitive properties.
+the local host system clock and can be used to display the time or to update time 
+sensitive properties.
 
 ## Installation
 
