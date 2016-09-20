@@ -1,3 +1,5 @@
+# CHANGELOG
+
 ### v1.0.0 2016-03-22
 
 * Add `isTicking` property
