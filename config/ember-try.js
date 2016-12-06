@@ -30,13 +30,24 @@ module.exports = {
       }
     },
     {
-      name: 'ember-2.7',
+      name: 'ember-2.8-LTS',
       bower: {
         dependencies: {
-          'ember': '~2.7.0'
+          'ember': '~2.8.0'
         },
         resolutions: {
-          'ember': '~2.7.0'
+          'ember': '~2.8.0'
+        }
+      }
+    },
+    {
+      name: 'ember-2.9',
+      bower: {
+        dependencies: {
+          'ember': '~2.9.0'
+        },
+        resolutions: {
+          'ember': '~2.9.0'
         }
       }
     },
