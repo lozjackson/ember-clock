@@ -34,3 +34,15 @@ property: Ember.computed('clock.second', function () {
   // this will update every second
 })
 ```
+
+```js
+property: Ember.computed('clock.minute', function () {
+  // this will update every minute
+})
+```
+
+```js
+property: Ember.computed('clock.hour', function () {
+  // this will update every hour
+})
+```
