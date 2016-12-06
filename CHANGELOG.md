@@ -1,8 +1,13 @@
 # CHANGELOG
 
+### v1.0.1 2016-12-06
+
 * [#3](https://github.com/lozjackson/ember-clock/pull/3) Update Ember-try config
 
 * [#2](https://github.com/lozjackson/ember-clock/pull/2) Update to Ember-cli v2.8.0
+
+
+
 
 ### v1.0.0 2016-03-22
 
