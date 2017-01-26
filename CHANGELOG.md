@@ -1,6 +1,11 @@
 # CHANGELOG
 
+### v1.0.2 2017-01-26
+
 * [#4](https://github.com/lozjackson/ember-clock/pull/4) Update to Ember-cli v2.11.0
+
+
+
 
 ### v1.0.1 2016-12-06
 
