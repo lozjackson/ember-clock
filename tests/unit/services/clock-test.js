@@ -1,6 +1,8 @@
 import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
 
+const { typeOf } = Ember;
+
 moduleFor('service:clock', 'Unit | Service | clock', {
 });
 
@@ -31,28 +33,27 @@ test('stop', function(assert) {
   assert.equal(clock.get('nextTick', null));
 });
 
-/*
-  check that the clock starts and ticks 2 seconds
-*/
 test('clock ticks', function(assert) {
+  assert.expect(6);
+  let later = Ember.run.later;
 
-  assert.expect(7);
-  let clock = this.subject();
-  let date1 = new Date();
+  let clock;
+  clock = this.subject();
+  clock.stop();
+  clock.setTime = () => assert.ok(true);
 
-  window.QUnit.stop();
-  assert.equal(clock.get('second'), date1.getSeconds());
-  assert.equal(clock.get('minute'), date1.getMinutes());
-  assert.equal(clock.get('hour'), date1.getHours());
+  Ember.run.later = (context, callback, time) => {
+    assert.deepEqual(context, clock);
+    assert.equal(typeOf(callback), 'function');
+    assert.deepEqual(callback, clock.tick);
+    assert.equal(time, 1000);
+    return { method: 'ember-run-later' };
+  };
 
-  Ember.run.later(function() {
-    assert.equal(clock.get('second'), date1.getSeconds() + 2);
-    let date2 = new Date();
-    assert.equal(clock.get('second'), date2.getSeconds());
-    assert.equal(clock.get('minute'), date2.getMinutes());
-    assert.equal(clock.get('hour'), date2.getHours());
-    window.QUnit.start();
-  }, 2020);
+  clock.tick();
+
+  assert.deepEqual(clock.get('nextTick'), { method: 'ember-run-later' });
+  Ember.run.later = later;
 });
 
 test('willDestroy', function(assert) {

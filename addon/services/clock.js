@@ -3,7 +3,7 @@
 */
 import Ember from 'ember';
 
-const { computed, run } = Ember;
+const { computed: { bool } , run, Service } = Ember;
 
 /**
   ## ClockService
@@ -34,7 +34,7 @@ const { computed, run } = Ember;
   @class ClockService
   @namespace EmberClock
 */
-export default Ember.Service.extend({
+export default Service.extend({
 
   /**
     @property hour
@@ -68,15 +68,15 @@ export default Ember.Service.extend({
     @readonly
     @private
   */
-  isTicking: computed.bool('nextTick'),
+  isTicking: bool('nextTick'),
 
   /**
-    Call `startClock()`
+    Call `start()`
     @method init
     @private
   */
   init() {
-    this._super();
+    this._super(...arguments);
     this.start();
   },
 
@@ -120,9 +120,7 @@ export default Ember.Service.extend({
   */
   tick() {
 		this.setTime();
-  	this.set('nextTick', run.later(this, () => {
-      this.tick ();
-    }, 1000));
+  	this.set('nextTick', run.later(this, this.tick, 1000));
 	},
 
   /**
