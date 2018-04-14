@@ -1,9 +1,10 @@
 /**
   @module ember-clock
 */
-import Ember from 'ember';
+import { bool } from '@ember/object/computed';
 
-const { computed: { bool } , run, Service } = Ember;
+import { run } from '@ember/runloop';
+import Service from '@ember/service';
 
 /**
   ## ClockService
