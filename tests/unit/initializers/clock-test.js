@@ -1,14 +1,14 @@
-import Ember from 'ember';
+import Application from '@ember/application';
+import { run } from '@ember/runloop';
 import { initialize } from '../../../initializers/clock';
 import { module, test } from 'qunit';
 
-var registry, application;
+var application;
 
 module('Unit | Initializer | clock', {
   beforeEach: function() {
-    Ember.run(function() {
-      application = Ember.Application.create();
-      registry = application.registry;
+    run(function() {
+      application = Application.create();
       application.deferReadiness();
     });
   }

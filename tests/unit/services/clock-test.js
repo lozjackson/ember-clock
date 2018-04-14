@@ -1,7 +1,6 @@
+import { run } from '@ember/runloop';
+import { typeOf } from '@ember/utils';
 import { moduleFor, test } from 'ember-qunit';
-import Ember from 'ember';
-
-const { typeOf } = Ember;
 
 moduleFor('service:clock', 'Unit | Service | clock', {
 });
@@ -35,14 +34,13 @@ test('stop', function(assert) {
 
 test('clock ticks', function(assert) {
   assert.expect(6);
-  let later = Ember.run.later;
 
   let clock;
   clock = this.subject();
   clock.stop();
   clock.setTime = () => assert.ok(true);
-
-  Ember.run.later = (context, callback, time) => {
+  const later = run.later;
+  run.later = (context, callback, time) => {
     assert.deepEqual(context, clock);
     assert.equal(typeOf(callback), 'function');
     assert.deepEqual(callback, clock.tick);
@@ -53,7 +51,7 @@ test('clock ticks', function(assert) {
   clock.tick();
 
   assert.deepEqual(clock.get('nextTick'), { method: 'ember-run-later' });
-  Ember.run.later = later;
+  run.later = later;
 });
 
 test('willDestroy', function(assert) {

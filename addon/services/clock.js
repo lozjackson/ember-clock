@@ -1,9 +1,10 @@
 /**
   @module ember-clock
 */
-import Ember from 'ember';
+import { bool } from '@ember/object/computed';
 
-const { computed: { bool } , run, Service } = Ember;
+import { run } from '@ember/runloop';
+import Service from '@ember/service';
 
 /**
   ## ClockService
@@ -119,8 +120,8 @@ export default Service.extend({
     @private
   */
   tick() {
-		this.setTime();
-  	this.set('nextTick', run.later(this, this.tick, 1000));
+    this.setTime();
+    this.set('nextTick', run.later(this, this.tick, 1000));
 	},
 
   /**
