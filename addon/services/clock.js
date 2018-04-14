@@ -120,8 +120,8 @@ export default Service.extend({
     @private
   */
   tick() {
-		this.setTime();
-  	this.set('nextTick', run.later(this, this.tick, 1000));
+    this.setTime();
+    this.set('nextTick', run.later(this, this.tick, 1000));
 	},
 
   /**
