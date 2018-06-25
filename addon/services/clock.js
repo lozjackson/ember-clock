@@ -5,6 +5,7 @@ import { bool } from '@ember/object/computed';
 
 import { run } from '@ember/runloop';
 import Service from '@ember/service';
+import ENV from '../config/environment';
 
 /**
   ## ClockService
@@ -121,6 +122,9 @@ export default Service.extend({
   */
   tick() {
     this.setTime();
+    if(ENV['ember-clock'] && ENV['ember-clock'].disabled) {
+      return;
+    }
     this.set('nextTick', run.later(this, this.tick, 1000));
 	},
 
