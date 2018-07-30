@@ -6,6 +6,7 @@ import { bool } from '@ember/object/computed';
 import { run } from '@ember/runloop';
 import Service from '@ember/service';
 
+
 /**
   ## ClockService
 
@@ -121,6 +122,9 @@ export default Service.extend({
   */
   tick() {
     this.setTime();
+    if(this.get('disabled')) {
+      return;
+    }
     this.set('nextTick', run.later(this, this.tick, 1000));
 	},
 

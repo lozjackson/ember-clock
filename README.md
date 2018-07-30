@@ -46,3 +46,16 @@ property: Ember.computed('clock.hour', function () {
   // this will update every hour
 })
 ```
+## Know Issues
+The clock service will break Ember acceptance tests, as it creates a continuous run loop to update the current time. To disable the runloop update your config/environment file with the following
+```js
+module.exports = function(environment) {
+  //...
+  if (environment === 'test') {
+    //...
+    ENV['ember-clock'] = {
+      disabled: true
+    }
+  }
+}
+```
