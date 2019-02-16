@@ -43,17 +43,13 @@
   In templates:
 </p>
 
-<pre><code>&#123;&#123;clock.hour&#125;&#125;
-&#123;&#123;clock.minute&#125;&#125;
-&#123;&#123;clock.second&#125;&#125;</code></pre>
+{{code-snippet name="clock-properties.hbs"}}
 
 <p>
   In computed properties:
 </p>
 
-<pre><code>property: Ember.computed('clock.second', function () &#123;
-  // this will update every second
-&#125;)</code></pre>
+{{code-snippet name="computed-properties.js"}}
 
 <h2>Install</h2>
 
