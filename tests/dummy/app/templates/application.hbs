@@ -43,27 +43,23 @@
   In templates:
 </p>
 
-<pre><code>&#123;&#123;clock.hour&#125;&#125;
-&#123;&#123;clock.minute&#125;&#125;
-&#123;&#123;clock.second&#125;&#125;</code></pre>
+{{code-snippet name="clock-properties.hbs"}}
 
 <p>
   In computed properties:
 </p>
 
-<pre><code>property: Ember.computed('clock.second', function () &#123;
-  // this will update every second
-&#125;)</code></pre>
+{{code-snippet name="computed-properties.js"}}
 
 <h2>Install</h2>
 
-The package can be installed from <a href="https://www.npmjs.com/package/ember-clock" class="npm-link" target="_blank">npm</a>.
+The package can be installed from <a href="https://www.npmjs.com/package/ember-clock" class="npm-link" target="_blank" rel="noopener">npm</a>.
 
 <div class="panel code">
   <pre><code>ember install ember-clock</code></pre>
 </div>
 
 <h2>Source code</h2>
-The source code can be found on <a href="https://github.com/lozjackson/ember-clock" class="github-link" target="_blank">Github</a>.
+The source code can be found on <a href="https://github.com/lozjackson/ember-clock" class="github-link" target="_blank" rel="noopener">Github</a>.
 
 {{outlet}}
