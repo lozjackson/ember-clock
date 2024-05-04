@@ -11,24 +11,25 @@ module('Unit | Service | clock', function (hooks) {
     const clock = this.owner.lookup('service:clock');
 
     clock.stop();
-    assert.equal(clock.isTicking, false);
+    assert.strictEqual(clock.isTicking, false);
 
     clock.start();
-    assert.equal(clock.isTicking, true);
+    assert.strictEqual(clock.isTicking, true);
   });
 
   test('start', function (assert) {
-    assert.expect(1);
     const clock = this.owner.lookup('service:clock');
-    clock.set('tick', () => assert.ok(true));
+    const tickStub = Sinon.stub(clock, 'tick');
+
     clock.start();
+
+    assert.true(tickStub.calledOnce, 'tick was called once');
   });
 
   test('stop', function (assert) {
-    assert.expect(1);
     const clock = this.owner.lookup('service:clock');
     clock.stop();
-    assert.equal(clock.nextTick, null);
+    assert.strictEqual(clock.nextTick, null);
   });
 
   test('clock ticks', function (assert) {
@@ -42,9 +43,8 @@ module('Unit | Service | clock', function (hooks) {
   });
 
   test('willDestroy', function (assert) {
-    assert.expect(1);
     const clock = this.owner.lookup('service:clock');
     clock.willDestroy();
-    assert.equal(clock.nextTick, null);
+    assert.strictEqual(clock.nextTick, null);
   });
 });
