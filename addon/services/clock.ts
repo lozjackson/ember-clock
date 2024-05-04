@@ -15,75 +15,72 @@ import { cancel, later } from '@ember/runloop';
  * @namespace EmberClock
  */
 export default class ClockService extends Service {
-  /**
-    @property hour
-    @type {Integer}
-  */
-  @tracked hour = null;
+  disabled: boolean = false;
 
   /**
-    @property minute
-    @type {Integer}
-  */
-  @tracked minute = null;
+   * @property hour
+   */
+  @tracked hour: number = 0;
 
   /**
-    @property second
-    @type {Integer}
-  */
-  @tracked second = null;
+   * @property minute
+   */
+  @tracked minute: number = 0;
 
   /**
-    Stores the next tick, so that it can be cancelled and the clock stopped.
-    @property nextTick
-    @type {Object}
-    @private
-  */
+   * @property second
+   */
+  @tracked second: number = 0;
+
+  /**
+   * Stores the next tick, so that it can be cancelled and the clock stopped.
+   * @property nextTick
+   */
   @tracked nextTick = null;
 
   /**
-    @property isTicking
-    @type {Boolean}
-    @readonly
-  */
+   * @property isTicking
+   * @readonly
+   */
   get isTicking() {
     return Boolean(this.nextTick);
   }
 
   /**
-    Call `start()`
-    @method init
-    @private
-  */
+   * Call `start()`
+   * @method constructor
+   */
   constructor() {
     super(...arguments);
     this.start();
   }
 
   /**
-    Start the clock
-    @method start
-    @private
-  */
+   * Start the clock
+   *
+   * @method start
+   * @private
+   */
   start() {
     this.tick();
   }
 
   /**
-    Stop the clock
-    @method stop
-    @private
-  */
+   * Stop the clock
+   *
+   * @method stop
+   * @private
+   */
   stop() {
     cancel(this.nextTick);
     this.nextTick = null;
   }
 
   /**
-    Set the time to the current time.
-    @method setTime
-    @private
-  */
+   * Set the time to the current time.
+   * @method setTime
+   * @private
+   */
   setTime() {
     const now = new Date();
     this.second = now.getSeconds();
@@ -92,10 +89,10 @@ export default class ClockService extends Service {
   }
 
   /**
-    Ticks the clock
-    @method tick
-    @private
-  */
+   * Ticks the clock
+   * @method tick
+   * @private
+   */
   tick() {
     this.setTime();
     if (this.disabled) {
