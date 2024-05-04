@@ -1,6 +1,6 @@
 # ember-clock
 
-This is an Ember-cli addon that provides a clock service.  The clock synchronizes to
+This is an Ember-cli addon that provides a clock service. The clock synchronizes to
 the local host system clock and can be used to display the time or to update time
 sensitive properties.
 
@@ -10,7 +10,7 @@ http://lozjackson.github.io/ember-clock/
 
 ## Installation
 
-* `ember install ember-clock`
+- `ember install ember-clock`
 
 ## ClockService
 
@@ -30,32 +30,35 @@ In templates:
 In computed properties:
 
 ```js
-property: Ember.computed('clock.second', function () {
+property: Ember.computed("clock.second", function () {
   // this will update every second
-})
+});
 ```
 
 ```js
-property: Ember.computed('clock.minute', function () {
+property: Ember.computed("clock.minute", function () {
   // this will update every minute
-})
+});
 ```
 
 ```js
-property: Ember.computed('clock.hour', function () {
+property: Ember.computed("clock.hour", function () {
   // this will update every hour
-})
+});
 ```
+
 ## Know Issues
+
 The clock service will break Ember acceptance tests, as it creates a continuous run loop to update the current time. To disable the runloop update your config/environment file with the following
+
 ```js
-module.exports = function(environment) {
+module.exports = function (environment) {
   //...
-  if (environment === 'test') {
+  if (environment === "test") {
     //...
-    ENV['ember-clock'] = {
-      disabled: true
-    }
+    ENV["ember-clock"] = {
+      disabled: true,
+    };
   }
-}
+};
 ```
