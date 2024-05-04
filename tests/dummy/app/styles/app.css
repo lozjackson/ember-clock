@@ -2,25 +2,27 @@ body {
   font-family: sans-serif;
   max-width: 800px;
 }
-pre {
-  white-space: pre-wrap;
-}
+
 ul.clock {
   list-style: none;
-  padding: 0px;
+  padding: 0;
 }
+
 ul.clock li div {
   display: inline-block;
   width: 40px;
   text-align: right;
 }
+
 pre {
+  white-space: pre-wrap;
   padding: 10px;
   border-radius: 2px;
   background: #eaeaea;
-  box-shadow: inset 0px 1px 1px #888;
+  box-shadow: inset 0 1px 1px #888;
   max-width: 800px;
 }
+
 p code {
   background: #eaeaea;
   border-radius: 2px;

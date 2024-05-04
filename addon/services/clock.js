@@ -1,59 +1,37 @@
 /**
-  @module ember-clock
-*/
-import { bool } from '@ember/object/computed';
-
-import { run } from '@ember/runloop';
+ * @module ember-clock
+ */
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+import { cancel, later } from '@ember/runloop';
 
 /**
-  ## ClockService
-
-  The clock service is injected into all controllers and components.  The clock
-  synchronizes to the local host's system clock and can be used to display the
-  time or to update time sensitive properties.
-
-  To use the clock in a template or in computed properties, bind to the clock's
-  `hour`, `minute`, or `second` properties.
-
-  In templates:
-
-  ```
-  {{clock.hour}}
-  {{clock.minute}}
-  {{clock.second}}
-  ```
-
-  In computed properties:
-
-  ```
-  property: Ember.computed('clock.second', function () {
-    // this will update every second
-  })
-  ```
-
-  @class ClockService
-  @namespace EmberClock
-*/
-export default Service.extend({
-
+ * ## ClockService
+ *
+ * The clock synchronizes to the local host's system clock and can be used to
+ * display thetime or to update time sensitive properties.
+ *
+ * @class ClockService
+ * @namespace EmberClock
+ */
+export default class ClockService extends Service {
   /**
     @property hour
     @type {Integer}
   */
-  hour: null,
+  @tracked hour = null;
 
   /**
     @property minute
     @type {Integer}
   */
-  minute: null,
+  @tracked minute = null;
 
-   /**
+  /**
     @property second
     @type {Integer}
   */
-  second: null,
+  @tracked second = null;
 
   /**
     Stores the next tick, so that it can be cancelled and the clock stopped.
@@ -61,25 +39,26 @@ export default Service.extend({
     @type {Object}
     @private
   */
-  nextTick: null,
+  @tracked nextTick = null;
 
   /**
     @property isTicking
     @type {Boolean}
     @readonly
-    @private
   */
-  isTicking: bool('nextTick'),
+  get isTicking() {
+    return Boolean(this.nextTick);
+  }
 
   /**
     Call `start()`
     @method init
     @private
   */
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super(...arguments);
     this.start();
-  },
+  }
 
   /**
     Start the clock
@@ -88,7 +67,7 @@ export default Service.extend({
   */
   start() {
     this.tick();
-  },
+  }
 
   /**
     Stop the clock
@@ -96,9 +75,9 @@ export default Service.extend({
     @private
   */
   stop() {
-    run.cancel(this.get('nextTick'));
-    this.set('nextTick', null);
-  },
+    cancel(this.nextTick);
+    this.nextTick = null;
+  }
 
   /**
     Set the time to the current time.
@@ -106,13 +85,11 @@ export default Service.extend({
     @private
   */
   setTime() {
-    let now = new Date();
-    this.setProperties({
-      second: now.getSeconds(),
-      minute: now.getMinutes(),
-      hour:   now.getHours()
-    });
-  },
+    const now = new Date();
+    this.second = now.getSeconds();
+    this.minute = now.getMinutes();
+    this.hour = now.getHours();
+  }
 
   /**
     Ticks the clock
@@ -121,11 +98,11 @@ export default Service.extend({
   */
   tick() {
     this.setTime();
-    if (this.get('disabled')) {
+    if (this.disabled) {
       return;
     }
-    this.set('nextTick', run.later(this, this.tick, 1000));
-	},
+    this.nextTick = later(this, this.tick, 1000);
+  }
 
   /**
     call `stop()`
@@ -135,4 +112,4 @@ export default Service.extend({
   willDestroy() {
     this.stop();
   }
-});
+}

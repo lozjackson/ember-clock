@@ -1,28 +1,30 @@
+{{page-title "ember-clock"}}
+
 <h1 id="title">ember-clock</h1>
 
 <h2>Description</h2>
 
 <p>
-  This is an Ember-cli addon that provides a clock service to Ember applications.
-  The clock can be used to update time-sensitive properties..
+  This is an Ember-cli addon that provides a clock service to Ember
+  applications. The clock can be used to update time-sensitive properties..
 </p>
 
 <ul class="clock">
   <li>
     <div>
-      {{clock.hour}}
+      {{this.clock.hour}}
     </div>
     Hours
   </li>
   <li>
     <div>
-      {{clock.minute}}
+      {{this.clock.minute}}
     </div>
     Minutes
   </li>
   <li>
     <div>
-      {{clock.second}}
+      {{this.clock.second}}
     </div>
     Seconds
   </li>
@@ -36,30 +38,41 @@
 
 <p>
   To use the clock in a template or in computed properties, bind to the clock's
-  <code>hour</code>, <code>minute</code>, or <code>second</code> properties.
+  <code>hour</code>,
+  <code>minute</code>, or
+  <code>second</code>
+  properties.
 </p>
 
 <p>
   In templates:
 </p>
 
-{{code-snippet name="clock-properties.hbs"}}
-
 <p>
   In computed properties:
 </p>
 
-{{code-snippet name="computed-properties.js"}}
-
 <h2>Install</h2>
 
-The package can be installed from <a href="https://www.npmjs.com/package/ember-clock" class="npm-link" target="_blank" rel="noopener">npm</a>.
+The package can be installed from
+<a
+  href="https://www.npmjs.com/package/ember-clock"
+  class="npm-link"
+  target="_blank"
+  rel="noopener noreferrer"
+>npm</a>.
 
 <div class="panel code">
   <pre><code>ember install ember-clock</code></pre>
 </div>
 
 <h2>Source code</h2>
-The source code can be found on <a href="https://github.com/lozjackson/ember-clock" class="github-link" target="_blank" rel="noopener">Github</a>.
+The source code can be found on
+<a
+  href="https://github.com/lozjackson/ember-clock"
+  class="github-link"
+  target="_blank"
+  rel="noopener noreferrer"
+>Github</a>.
 
 {{outlet}}

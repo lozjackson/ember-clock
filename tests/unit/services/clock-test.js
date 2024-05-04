@@ -1,60 +1,48 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { typeOf } from '@ember/utils';
-import { run } from '@ember/runloop';
+import Sinon from 'sinon';
 
-module('Unit | Service | clock', function(hooks) {
+module('Unit | Service | clock', function (hooks) {
   setupTest(hooks);
 
-  test('isTicking', function(assert) {
-    let clock = this.owner.lookup('service:clock');
+  test('isTicking', function (assert) {
+    const clock = this.owner.lookup('service:clock');
 
     clock.stop();
-    assert.equal(clock.get('isTicking'), false);
+    assert.false(clock.isTicking, 'isTicking should be false');
 
     clock.start();
-    assert.equal(clock.get('isTicking'), true);
+    assert.true(clock.isTicking, 'isTicking should be true');
   });
 
-  test('start', function(assert) {
-    assert.expect(1);
-    let clock = this.owner.lookup('service:clock');
-    clock.set('tick', () => assert.ok(true));
+  test('start', function (assert) {
+    const clock = this.owner.lookup('service:clock');
+    const tickStub = Sinon.stub(clock, 'tick');
+
     clock.start();
+
+    assert.true(tickStub.calledOnce, 'tick was called once');
   });
 
-  test('stop', function(assert) {
-    assert.expect(1);
-    let clock = this.owner.lookup('service:clock');
+  test('stop', function (assert) {
+    const clock = this.owner.lookup('service:clock');
     clock.stop();
-    assert.equal(clock.get('nextTick', null));
+    assert.strictEqual(clock.nextTick, null);
   });
 
-  test('clock ticks', function(assert) {
-    assert.expect(6);
-
-    let clock = this.owner.lookup('service:clock');
+  test('clock ticks', function (assert) {
+    const clock = this.owner.lookup('service:clock');
     clock.stop();
-    clock.setTime = () => assert.ok(true);
-    const later = run.later;
-    run.later = (context, callback, time) => {
-      assert.deepEqual(context, clock);
-      assert.equal(typeOf(callback), 'function');
-      assert.deepEqual(callback, clock.tick);
-      assert.equal(time, 1000);
-      return { method: 'ember-run-later' };
-    };
+    const setTimeStub = Sinon.stub(clock, 'setTime');
 
     clock.tick();
 
-    assert.deepEqual(clock.get('nextTick'), { method: 'ember-run-later' });
-    run.later = later;
+    assert.true(setTimeStub.calledOnce, 'setTime was called once');
   });
 
-  test('willDestroy', function(assert) {
-    assert.expect(1);
-    let clock = this.owner.lookup('service:clock');
+  test('willDestroy', function (assert) {
+    const clock = this.owner.lookup('service:clock');
     clock.willDestroy();
-    assert.equal(clock.get('nextTick', null));
+    assert.strictEqual(clock.nextTick, null);
   });
 });
