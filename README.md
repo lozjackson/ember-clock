@@ -4,6 +4,24 @@ This is an Ember-cli addon that provides a clock service. The clock synchronizes
 the local host system clock and can be used to display the time or to update time
 sensitive properties.
 
+## Compatibility
+
+2.x requires Ember 4+ and Node 18+
+
+## Breaking Changes in 2.0.0
+
+v2.0.0 removes implicit injections as these are deprecated in Ember 3.x and removed
+in Ember 4.x. You must explicitly inject the clock service like so:
+
+```
+import Component from '@glimmer/component';
+import { service } from '@ember/service';
+
+export default class MyComponent extends Component {
+  @service clock;
+}
+```
+
 ## Demo
 
 http://lozjackson.github.io/ember-clock/
