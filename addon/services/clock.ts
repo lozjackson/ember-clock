@@ -5,6 +5,7 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { cancel, later } from '@ember/runloop';
 import type { Timer } from '@ember/runloop';
+import type Owner from '@ember/owner';
 
 const Interval = 1000;
 
@@ -53,8 +54,8 @@ export default class ClockService extends Service {
    * Call `start()`
    * @method constructor
    */
-  constructor() {
-    super(...arguments);
+  constructor(owner: Owner) {
+    super(owner);
     this.start();
   }
 
