@@ -8,10 +8,10 @@
     "paths": {
       "dummy/tests/*": ["tests/*"],
       "dummy/*": ["tests/dummy/app/*", "app/*"],
-      "test-addon-ts": ["addon"],
-      "test-addon-ts/*": ["addon/*"],
-      "test-addon-ts/test-support": ["addon-test-support"],
-      "test-addon-ts/test-support/*": ["addon-test-support/*"],
+      "ember-clock": ["addon"],
+      "ember-clock/*": ["addon/*"],
+      "ember-clock/test-support": ["addon-test-support"],
+      "ember-clock/test-support/*": ["addon-test-support/*"],
       "*": ["types/*"]
     }
   }
