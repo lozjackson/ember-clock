@@ -1,7 +1,5 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { typeOf } from '@ember/utils';
-import { later } from '@ember/runloop';
 import Sinon from 'sinon';
 
 module('Unit | Service | clock', function (hooks) {
@@ -11,10 +9,10 @@ module('Unit | Service | clock', function (hooks) {
     const clock = this.owner.lookup('service:clock');
 
     clock.stop();
-    assert.strictEqual(clock.isTicking, false);
+    assert.falsel(clock.isTicking, 'isTicking should be false');
 
     clock.start();
-    assert.strictEqual(clock.isTicking, true);
+    assert.true(clock.isTicking, 'isTicking should be true');
   });
 
   test('start', function (assert) {
