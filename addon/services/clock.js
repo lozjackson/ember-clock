@@ -66,9 +66,10 @@ export default class ClockService extends Service {
     @property isTicking
     @type {Boolean}
     @readonly
-    @private
   */
-  @bool('nextTick') isTicking;
+  get isTicking() {
+    return Boolean(this.nextTick);
+  }
 
   /**
     Call `start()`
