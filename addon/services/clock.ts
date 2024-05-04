@@ -4,6 +4,9 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { cancel, later } from '@ember/runloop';
+import type { Timer } from '@ember/runloop';
+
+const Interval = 1000;
 
 /**
  * ## ClockService
@@ -36,7 +39,7 @@ export default class ClockService extends Service {
    * Stores the next tick, so that it can be cancelled and the clock stopped.
    * @property nextTick
    */
-  @tracked nextTick = null;
+  @tracked nextTick?: Timer;
 
   /**
    * @property isTicking
@@ -73,7 +76,7 @@ export default class ClockService extends Service {
    */
   stop() {
     cancel(this.nextTick);
-    this.nextTick = null;
+    this.nextTick = undefined;
   }
 
   /**
@@ -98,7 +101,8 @@ export default class ClockService extends Service {
     if (this.disabled) {
       return;
     }
-    this.nextTick = later(this, this.tick, 1000);
+
+    this.nextTick = later(this, this.tick, Interval);
   }
 
   /**
