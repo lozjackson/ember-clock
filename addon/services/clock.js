@@ -3,7 +3,6 @@
  */
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { bool } from '@ember/object/computed';
 import { cancel, later } from '@ember/runloop';
 
 /**
