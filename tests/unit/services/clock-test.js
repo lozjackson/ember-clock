@@ -9,7 +9,7 @@ module('Unit | Service | clock', function (hooks) {
     const clock = this.owner.lookup('service:clock');
 
     clock.stop();
-    assert.falsel(clock.isTicking, 'isTicking should be false');
+    assert.false(clock.isTicking, 'isTicking should be false');
 
     clock.start();
     assert.true(clock.isTicking, 'isTicking should be true');
