@@ -1,0 +1,10 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[yaml]": {
+    "editor.formatOnSave": false
+  },
+  "editor.formatOnPaste": false,
+  "prettier.ignorePath": ".prettierignore",
+  "eslint.validate": ["glimmer-ts", "glimmer-js"]
+}
