@@ -6,34 +6,14 @@ import { tracked } from '@glimmer/tracking';
 import { cancel, later } from '@ember/runloop';
 
 /**
-  ## ClockService
-
-  The clock service is injected into all controllers and components.  The clock
-  synchronizes to the local host's system clock and can be used to display the
-  time or to update time sensitive properties.
-
-  To use the clock in a template or in computed properties, bind to the clock's
-  `hour`, `minute`, or `second` properties.
-
-  In templates:
-
-  ```
-  {{clock.hour}}
-  {{clock.minute}}
-  {{clock.second}}
-  ```
-
-  In computed properties:
-
-  ```
-  property: Ember.computed('clock.second', function () {
-    // this will update every second
-  })
-  ```
-
-  @class ClockService
-  @namespace EmberClock
-*/
+ * ## ClockService
+ *
+ * The clock synchronizes to the local host's system clock and can be used to
+ * display thetime or to update time sensitive properties.
+ *
+ * @class ClockService
+ * @namespace EmberClock
+ */
 export default class ClockService extends Service {
   /**
     @property hour
