@@ -114,3 +114,9 @@ export default class ClockService extends Service {
     this.stop();
   }
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    clock: ClockService;
+  }
+}
