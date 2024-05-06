@@ -32,7 +32,7 @@ http://lozjackson.github.io/ember-clock/
 
 ## ClockService
 
-The clock service is injected into all controllers and components.
+The clock service should be injected into controllers and components where required.
 
 To use the clock in a template or in computed properties, bind to the clock's
 `hour`, `minute`, or `second` properties.
@@ -40,28 +40,18 @@ To use the clock in a template or in computed properties, bind to the clock's
 In templates:
 
 ```hbs
-{{clock.hour}}
-{{clock.minute}}
-{{clock.second}}
+{{this.clock.hour}}
+{{this.clock.minute}}
+{{this.clock.second}}
 ```
 
 In computed properties:
 
 ```js
-property: Ember.computed("clock.second", function () {
+get seconds() {
   // this will update every second
-});
-```
-
-```js
-property: Ember.computed("clock.minute", function () {
-  // this will update every minute
-});
-```
-
-```js
-property: Ember.computed("clock.hour", function () {
-  // this will update every hour
+  const second = this.clock.second
+  return `${ second } seconds`
 });
 ```
 
