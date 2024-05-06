@@ -48,6 +48,8 @@ In templates:
 In computed properties:
 
 ```js
+@service clock;
+
 get seconds() {
   // this will update every second
   const second = this.clock.second
