@@ -4,6 +4,7 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { cancel, later } from '@ember/runloop';
+import { registerDestructor } from '@ember/destroyable';
 
 /**
  * ## ClockService
@@ -58,6 +59,7 @@ export default class ClockService extends Service {
   constructor() {
     super(...arguments);
     this.start();
+    registerDestructor(this, () => this.stop());
   }
 
   /**
@@ -102,14 +104,5 @@ export default class ClockService extends Service {
       return;
     }
     this.nextTick = later(this, this.tick, 1000);
-  }
-
-  /**
-    call `stop()`
-    @event willDestroy
-    @private
-  */
-  willDestroy() {
-    this.stop();
   }
 }
