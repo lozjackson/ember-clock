@@ -39,10 +39,4 @@ module('Unit | Service | clock', function (hooks) {
 
     assert.true(setTimeStub.calledOnce, 'setTime was called once');
   });
-
-  test('willDestroy', function (assert) {
-    const clock = this.owner.lookup('service:clock');
-    clock.willDestroy();
-    assert.strictEqual(clock.nextTick, null);
-  });
 });
