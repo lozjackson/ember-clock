@@ -14,7 +14,10 @@
     "minute",
     "second"
   ],
-  "repository": "https://github.com/lozjackson/ember-clock",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lozjackson/ember-clock.git"
+  },
   "license": "MIT",
   "author": "Loz Jackson",
   "directories": {
