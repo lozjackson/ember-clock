@@ -6,6 +6,7 @@ import { tracked } from '@glimmer/tracking';
 import { cancel, later } from '@ember/runloop';
 import type { Timer } from '@ember/runloop';
 import type Owner from '@ember/owner';
+import { registerDestructor } from '@ember/destroyable';
 
 const Interval = 1000;
 
@@ -57,6 +58,7 @@ export default class ClockService extends Service {
   constructor(owner: Owner) {
     super(owner);
     this.start();
+    registerDestructor(this, () => this.stop());
   }
 
   /**
@@ -104,15 +106,6 @@ export default class ClockService extends Service {
     }
 
     this.nextTick = later(this, this.tick, Interval);
-  }
-
-  /**
-    call `stop()`
-    @event willDestroy
-    @private
-  */
-  willDestroy() {
-    this.stop();
   }
 }
 
