@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v2.0.0 2024-05-04
+## v2.0.0 2024-05-12
 
 - [#11](https://github.com/lozjackson/ember-clock/pull/11) Update to Ember-cli v5.8.0
 
