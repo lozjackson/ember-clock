@@ -6,7 +6,7 @@ sensitive properties.
 
 ## Compatibility
 
-2.x requires Ember 4+ and Node 18+
+2.x requires Ember 4+ and Node 18.18+
 
 ## Breaking Changes in 2.0.0
 
