@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v2.0.0 2024-05-04
+## v2.0.0 2024-05-12
 
 - [#11](https://github.com/lozjackson/ember-clock/pull/11) Update to Ember-cli v5.8.0
 
@@ -8,7 +8,7 @@
 
 - The clock service is no longer automatically injected into controllers and components.
 - drop support for Ember 3.x
-- Require Node >= 18
+- Require Node >= 18.18
 
 ## v1.0.2 2017-01-26
 

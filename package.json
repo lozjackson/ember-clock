@@ -1,6 +1,6 @@
 {
   "name": "ember-clock",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0",
   "description": "Clock service for Ember",
   "keywords": [
     "ember-addon",
@@ -14,7 +14,10 @@
     "minute",
     "second"
   ],
-  "repository": "https://github.com/lozjackson/ember-clock",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lozjackson/ember-clock.git"
+  },
   "license": "MIT",
   "author": "Loz Jackson",
   "typesVersions": {
