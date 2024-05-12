@@ -8,7 +8,7 @@
 
 - The clock service is no longer automatically injected into controllers and components.
 - drop support for Ember 3.x
-- Require Node >= 18
+- Require Node >= 18.18
 
 ## v1.0.2 2017-01-26
 
