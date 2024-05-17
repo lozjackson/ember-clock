@@ -1,6 +1,3 @@
-/**
- * @module ember-clock
- */
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { cancel, later } from '@ember/runloop';
@@ -11,28 +8,31 @@ import { registerDestructor } from '@ember/destroyable';
 const Interval = 1000;
 
 /**
- * ## ClockService
- *
  * The clock synchronizes to the local host's system clock and can be used to
  * display the time or to update time sensitive properties.
  *
  * @class ClockService
- * @namespace EmberClock
  */
 export default class ClockService extends Service {
+  /**
+   * Disables the clock
+   */
   disabled: boolean = false;
 
   /**
+   * The current hour
    * @property hour
    */
   @tracked hour: number = 0;
 
   /**
+   * The current minute
    * @property minute
    */
   @tracked minute: number = 0;
 
   /**
+   * The current second
    * @property second
    */
   @tracked second: number = 0;
@@ -45,6 +45,7 @@ export default class ClockService extends Service {
   @tracked nextTick?: Timer;
 
   /**
+   * True if the clock is currently ticking
    * @property isTicking
    * @readonly
    */
@@ -53,8 +54,8 @@ export default class ClockService extends Service {
   }
 
   /**
-   * Call `start()`
-   * @method constructor
+   * The constructor calls `start()` to start the clock ticking.
+   * @constructor
    */
   constructor(owner: Owner) {
     super(owner);
@@ -64,9 +65,7 @@ export default class ClockService extends Service {
 
   /**
    * Start the clock
-   *
    * @method start
-   * @private
    */
   start() {
     this.tick();
@@ -74,9 +73,7 @@ export default class ClockService extends Service {
 
   /**
    * Stop the clock
-   *
    * @method stop
-   * @private
    */
   stop() {
     cancel(this.nextTick);

@@ -1,6 +1,7 @@
 # compiled output
 /dist/
 /declarations/
+/docs/
 
 # dependencies
 /node_modules/
@@ -23,3 +24,4 @@
 
 # broccoli-debug
 /DEBUG/
+.DS_Store

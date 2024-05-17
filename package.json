@@ -41,6 +41,7 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
+    "build:docs": "typedoc",
     "lint": "concurrently \"npm:lint:*(!fix)\" --names \"lint:\"",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:css:fix": "concurrently \"npm:lint:css -- --fix\"",
@@ -109,6 +110,8 @@
     "stylelint": "^16.5.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-prettier": "^5.0.0",
+    "typedoc": "^0.25.13",
+    "typedoc-plugin-rename-defaults": "^0.7.0",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0"
   },
