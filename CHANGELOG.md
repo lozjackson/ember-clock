@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.1.0 2024-05-17
+
+- [#12] Add Typescript
+
 ## v2.0.0 2024-05-12
 
 - [#11](https://github.com/lozjackson/ember-clock/pull/11) Update to Ember-cli v5.8.0
