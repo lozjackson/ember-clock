@@ -1,0 +1,5 @@
+{
+  "entryPoints": ["./addon"],
+  "entryPointStrategy": "expand",
+  "plugin": ["typedoc-plugin-rename-defaults"]
+}
