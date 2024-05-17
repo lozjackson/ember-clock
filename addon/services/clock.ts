@@ -14,7 +14,7 @@ const Interval = 1000;
  * ## ClockService
  *
  * The clock synchronizes to the local host's system clock and can be used to
- * display thetime or to update time sensitive properties.
+ * display the time or to update time sensitive properties.
  *
  * @class ClockService
  * @namespace EmberClock
