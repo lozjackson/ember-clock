@@ -57,7 +57,7 @@ get seconds() {
 });
 ```
 
-## Know Issues
+## Known Issues
 
 The clock service will break Ember acceptance tests, as it creates a continuous run loop to update the current time. To disable the runloop update your config/environment file with the following
 
