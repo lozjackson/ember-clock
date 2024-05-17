@@ -40,6 +40,7 @@ export default class ClockService extends Service {
   /**
    * Stores the next tick, so that it can be cancelled and the clock stopped.
    * @property nextTick
+   * @private
    */
   @tracked nextTick?: Timer;
 
