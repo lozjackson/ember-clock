@@ -27,7 +27,12 @@ module('Unit | Service | clock', function (hooks) {
   test('stop', function (assert) {
     const clock = this.owner.lookup('service:clock');
     clock.stop();
-    assert.strictEqual(clock.nextTick, null);
+
+    assert.strictEqual(
+      clock.nextTick,
+      undefined,
+      'nextTick should be undefined',
+    );
   });
 
   test('clock ticks', function (assert) {
