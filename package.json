@@ -1,6 +1,6 @@
 {
   "name": "ember-clock",
-  "version": "2.1.0-beta.1",
+  "version": "2.1.0-beta.2",
   "description": "Clock service for Ember",
   "keywords": [
     "ember-addon",
